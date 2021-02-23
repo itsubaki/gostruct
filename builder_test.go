@@ -8,10 +8,10 @@ import (
 )
 
 func Example() {
-	b := gostruct.New()
-	b.AddField("Name", reflect.TypeOf(""))
-	b.AddField("Age", reflect.TypeOf(int64(0)))
-	person := b.Build()
+	person := gostruct.New().
+		AddField("Name", reflect.TypeOf("")).
+		AddField("Age", reflect.TypeOf(int64(0))).
+		Build()
 
 	p := person.New()
 	p.SetString("Name", "gopher")

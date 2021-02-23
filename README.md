@@ -11,12 +11,12 @@ func Example() {
 	b.AddField("Age", reflect.TypeOf(int64(0)))
 	person := b.Build()
 
-	i := person.New()
-	i.SetString("Name", "gopher")
-	i.SetInt64("Age", 11)
+	p := person.New()
+	p.SetString("Name", "gopher")
+	p.SetInt64("Age", 11)
 
-	fmt.Printf(" %T:  %+v\n", i.Interface(), i.Interface())
-	fmt.Printf("%T: %+v\n", i.Addr(), i.Addr())
+	fmt.Printf(" %T:  %+v\n", p.Interface(), p.Interface())
+	fmt.Printf("%T: %+v\n", p.Addr(), p.Addr())
 
 	// Output:
 	//  struct { Name string; Age int64 }:  {Name:gopher Age:11}

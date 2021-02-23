@@ -1,10 +1,12 @@
-# gostruct
-A Runtime Struct Builder for Go
+package gostruct_test
 
+import (
+	"fmt"
+	"reflect"
 
-## Example
+	"github.com/itsubaki/gostruct"
+)
 
-```go
 func Example() {
 	b := gostruct.New()
 	b.AddField("Name", reflect.TypeOf(""))
@@ -13,13 +15,12 @@ func Example() {
 
 	i := person.New()
 	i.SetString("Name", "gopher")
-	i.SetInt64("Age", 11)
+	i.SetInt64("Age", 8)
 
 	fmt.Printf(" %T:  %+v\n", i.Interface(), i.Interface())
 	fmt.Printf("%T: %+v\n", i.Addr(), i.Addr())
 
 	// Output:
-	//  struct { Name string; Age int64 }:  {Name:gopher Age:11}
-	// *struct { Name string; Age int64 }: &{Name:gopher Age:11}
+	//  struct { Name string; Age int64 }:  {Name:gopher Age:8}
+	// *struct { Name string; Age int64 }: &{Name:gopher Age:8}
 }
-```

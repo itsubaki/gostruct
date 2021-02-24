@@ -21,6 +21,22 @@ func (b *Builder) AddField(name string, type_ reflect.Type) *Builder {
 	return b
 }
 
+func (b *Builder) AddString(name string) *Builder {
+	return b.AddField(name, reflect.TypeOf(""))
+}
+
+func (b *Builder) AddBool(name string) *Builder {
+	return b.AddField(name, reflect.TypeOf(true))
+}
+
+func (b *Builder) AddInt64(name string) *Builder {
+	return b.AddField(name, reflect.TypeOf(int64(0)))
+}
+
+func (b *Builder) AddFloat64(name string) *Builder {
+	return b.AddField(name, reflect.TypeOf(float64(1.2)))
+}
+
 func (b *Builder) Build() Struct {
 	strct := reflect.StructOf(b.field)
 

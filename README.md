@@ -1,14 +1,13 @@
 # gostruct
 A Runtime Struct Builder for Go
 
-
 ## Example
 
 ```go
 func Example() {
 	person := gostruct.New().
-		AddField("Name", reflect.TypeOf("")).
-		AddField("Age", reflect.TypeOf(int64(0))).
+		AddString("Name").
+		AddInt64("Age").
 		Build()
 
 	p := person.New()

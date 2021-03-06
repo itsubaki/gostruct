@@ -10,12 +10,12 @@ func New() *Builder {
 	return &Builder{}
 }
 
-func (b *Builder) AddField(name string, type_ reflect.Type) *Builder {
+func (b *Builder) AddField(name string, ftype reflect.Type) *Builder {
 	b.field = append(
 		b.field,
 		reflect.StructField{
 			Name: name,
-			Type: type_,
+			Type: ftype,
 		})
 
 	return b

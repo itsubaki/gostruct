@@ -1,6 +1,6 @@
 # gostruct
 
-Runtime Struct Builder for Go
+- Runtime struct builder for Go
 
 ## Example
 

@@ -14,8 +14,8 @@ func Example() {
 		Build()
 
 	p := person.New()
-	p.SetString("Name", "gopher")
-	p.SetInt64("Age", 11)
+	gostruct.Must(p.SetString("Name", "gopher"))
+	gostruct.Must(p.SetInt64("Age", 11))
 
 	fmt.Printf(" %T:  %+v\n", p.Interface(), p.Interface())
 	fmt.Printf("%T: %+v\n", p.Addr(), p.Addr())
@@ -32,8 +32,8 @@ func Example_tag() {
 		Build()
 
 	p := person.New()
-	p.SetString("Name", "gopher")
-	p.SetInt64("Age", 11)
+	gostruct.Must(p.SetString("Name", "gopher"))
+	gostruct.Must(p.SetInt64("Age", 11))
 
 	data, err := json.Marshal(p.Interface())
 	if err != nil {

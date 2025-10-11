@@ -50,24 +50,29 @@ func (b *Builder) Float64(name string, tag ...string) *Builder {
 }
 
 func (b *Builder) Build() Struct {
-	strct := reflect.StructOf(b.field)
+	ref := reflect.StructOf(b.field)
 
 	index := make(map[string]int)
-	for i := 0; i < strct.NumField(); i++ {
-		index[strct.Field(i).Name] = i
+	for i := range ref.NumField() {
+		index[ref.Field(i).Name] = i
 	}
 
-	return Struct{strct, index}
+	return Struct{
+		internal: ref,
+		index:    index,
+	}
 }
 
 type Struct struct {
-	strct reflect.Type
-	index map[string]int
+	internal reflect.Type
+	index    map[string]int
 }
 
 func (s *Struct) New() *Instance {
-	instance := reflect.New(s.strct).Elem()
-	return &Instance{instance, s.index}
+	return &Instance{
+		internal: reflect.New(s.internal).Elem(),
+		index:    s.index,
+	}
 }
 
 type Instance struct {
@@ -140,10 +145,16 @@ func (i *Instance) SetFloat64(name string, value float64) error {
 	return nil
 }
 
-func (i *Instance) Interface() interface{} {
+func (i *Instance) Interface() any {
 	return i.internal.Interface()
 }
 
-func (i *Instance) Addr() interface{} {
+func (i *Instance) Addr() any {
 	return i.internal.Addr().Interface()
+}
+
+func Must(err error) {
+	if err != nil {
+		panic(err)
+	}
 }
